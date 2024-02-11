@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://du3y8ldi32bum"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_whu72"]
+[ext_resource type="Script" path="res://Scripts/statemachine.gd" id="2_rgyw2"]
+[ext_resource type="Script" path="res://Scripts/Player/playerstate.gd" id="3_3n1e4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h4t10"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2a4u0"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_whu72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_h4t10")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2a4u0")
+
+[node name="YawPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="PitchPivot" type="Node3D" parent="YawPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="YawPivot/PitchPivot"]
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("2_rgyw2")
+current_state = NodePath("IdlePlayerState")
+
+[node name="IdlePlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("3_3n1e4")
+
+[node name="WalkingPlayerState" type="Node" parent="PlayerStateMachine"]
+
+[node name="FallingPlayerState" type="Node" parent="PlayerStateMachine"]
+
+[node name="JumpingPlayerState" type="Node" parent="PlayerStateMachine"]
+
+[node name="CrouchingPlayerState" type="Node" parent="PlayerStateMachine"]
+
+[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine"]
