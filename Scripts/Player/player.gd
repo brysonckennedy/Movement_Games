@@ -5,11 +5,20 @@ extends CharacterBody3D
 @onready var yaw_pivot : Node3D = $YawPivot
 @onready var pitch_pivot : Node3D = $YawPivot/PitchPivot
 @onready var camera : Node3D = $YawPivot/PitchPivot/Camera3D
+@onready var animation_player = $AnimationPlayer
 
 @export var SPEED : float = 5.0
+@export var SPRINT_SPEED : float = 7.0
+@export var AIR_SPEED : float = 5.0
+@export var CROUCH_SPEED : float = 2.0
+@export var ACCELERATION : float = 1.0
+@export var DECELERATION : float = 5.0
+@export var SPRINT_ACCELERATION : float = 1.0
+@export var SPRINT_DECELERATION : float = 5.0
 @export var JUMP_FORCE : float = 5.0
 @export var GRAVITY : float = 10
 @export var SENSITIVITY : float = 0.2
+@export var CROUCH_ANIMATION_SPEED : float = 7.0
 
 
 func _ready() -> void:

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvfh08t0inmko"]
+
+[ext_resource type="Script" path="res://Scripts/rocket.gd" id="1_a6h3p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2l28"]
+radius = 0.05
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg8wf"]
+albedo_color = Color(0, 0.615686, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8x5rp"]
+material = SubResource("StandardMaterial3D_kg8wf")
+radius = 0.05
+height = 0.3
+
+[node name="Rocket" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_a6h3p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_r2l28")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_8x5rp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
