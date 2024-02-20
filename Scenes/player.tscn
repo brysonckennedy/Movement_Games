@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://du3y8ldi32bum"]
+[gd_scene load_steps=14 format=3 uid="uid://du3y8ldi32bum"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_whu72"]
 [ext_resource type="Script" path="res://Scripts/statemachine.gd" id="2_rgyw2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/fallingplayerstate.gd" id="5_43wei"]
 [ext_resource type="Script" path="res://Scripts/Player/jumpingplayerstate.gd" id="6_t2uc7"]
 [ext_resource type="Script" path="res://Scripts/Player/crouchingplayerstate.gd" id="7_t7c8a"]
+[ext_resource type="PackedScene" uid="uid://beauwo3p1r8q2" path="res://Scenes/Weapons/rocket_launcher.tscn" id="8_bohie"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_h4t10"]
 
@@ -136,3 +137,8 @@ script = ExtResource("7_t7c8a")
 libraries = {
 "": SubResource("AnimationLibrary_1nodd")
 }
+
+[node name="WeaponHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.367207, 0.650592, -0.211602)
+
+[node name="RocketLauncher" parent="WeaponHolder" instance=ExtResource("8_bohie")]

@@ -17,3 +17,6 @@ func process_physics(delta : float) -> void:
 	Global.player.pitch_pivot.rotation.x = clamp(Global.player.pitch_pivot.rotation.x, -1.57, 1.57)
 	yaw_input = 0.0
 	pitch_input = 0.0
+	
+	if (Input.is_action_pressed("fire_weapon")):
+		Global.player.rocket_launcher._PrimaryFire()

@@ -1,13 +1,16 @@
-class_name Rocket
 extends RigidBody3D
 
-var rocket_direction : Vector3
-var ROCKET_SPEED : float = 0.2
-var ROCKET_ACCELERATION : float = 5.0
+@onready var _Particles = $Particles
 
-func _physics_process(delta : float) -> void:
-	rocket_direction = Global.player.pitch_pivot.basis * Vector3(0, 0, -1)
-	apply_force(ROCKET_SPEED * rocket_direction)
+var Explosion = preload("res://Scenes/Weapons/explosion.tscn")
+
+func _ready() -> void:
+	_Particles.emitting = true
+
 
 func _on_body_entered(body):
+	var W = get_tree().get_root()
+	var E = Explosion.instantiate()
+	E.set_global_transform(get_global_transform())
+	W.add_child(E)
 	queue_free()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhjgxq520wkgn"]
+[gd_scene load_steps=6 format=3 uid="uid://bhjgxq520wkgn"]
 
 [ext_resource type="MeshLibrary" uid="uid://d3iiyvpiu8ypt" path="res://Assets/grid_tiles_lib.tres" id="1_khxeo"]
 [ext_resource type="PackedScene" uid="uid://du3y8ldi32bum" path="res://Scenes/player.tscn" id="2_7c370"]
-[ext_resource type="PackedScene" uid="uid://bvfh08t0inmko" path="res://Scenes/rocket.tscn" id="3_dlg6a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p2uhv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -35,6 +34,3 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_7c370")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22954, 0)
-
-[node name="Rocket" parent="." instance=ExtResource("3_dlg6a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.21526, 1.43281, -2.76672)

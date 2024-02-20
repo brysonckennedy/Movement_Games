@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var pitch_pivot : Node3D = $YawPivot/PitchPivot
 @onready var camera : Node3D = $YawPivot/PitchPivot/Camera3D
 @onready var animation_player = $AnimationPlayer
+@onready var rocket_launcher = $WeaponHolder/RocketLauncher
 
 @export var SPEED : float = 5.0
 @export var SPRINT_SPEED : float = 7.0

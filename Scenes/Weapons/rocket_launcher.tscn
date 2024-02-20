@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://beauwo3p1r8q2"]
+
+[ext_resource type="Script" path="res://Scripts/rocket_launcher.gd" id="1_dlg83"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jwjv"]
+albedo_color = Color(0.203922, 0.290196, 0.192157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pvwqv"]
+material = SubResource("StandardMaterial3D_1jwjv")
+top_radius = 0.07
+bottom_radius = 0.08
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r210l"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_00v8j"]
+material = SubResource("StandardMaterial3D_r210l")
+top_radius = 0.085
+bottom_radius = 0.08
+height = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ncfj"]
+albedo_color = Color(0.611765, 0.2, 0.133333, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ei36s"]
+material = SubResource("StandardMaterial3D_5ncfj")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.14
+
+[sub_resource type="Animation" id="Animation_53pkl"]
+resource_name = "Shoot"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wwi06"]
+_data = {
+"Shoot": SubResource("Animation_53pkl")
+}
+
+[node name="RocketLauncher" type="Node3D"]
+script = ExtResource("1_dlg83")
+
+[node name="RocketPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.527926)
+
+[node name="RocketLauncherMesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RocketLauncherMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_pvwqv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RocketLauncherMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.482614)
+mesh = SubResource("CylinderMesh_00v8j")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="RocketLauncherMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0392368, -0.134268, -0.258531)
+mesh = SubResource("CylinderMesh_ei36s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wwi06")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
