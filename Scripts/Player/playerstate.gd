@@ -5,11 +5,13 @@ extends State
 var yaw_input : float = 0.0
 var pitch_input : float = 0.0
 
+
 func process_input(event : InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if(Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
 			yaw_input = -event.relative.x * Global.player.SENSITIVITY
 			pitch_input = -event.relative.y * Global.player.SENSITIVITY
+
 
 func process_physics(delta : float) -> void:
 	Global.player.yaw_pivot.rotate_y(yaw_input * delta)

@@ -5,13 +5,15 @@ extends PlayerState
 var input_direction: Vector2
 var move_direction: Vector3
 
+
 func process_physics(delta : float) -> void:
 	super(delta)
 	
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
-	if(Global.player.velocity.length() == 0): #this needs to be changed. flips between idle and walking because velocity doesnt change before this
-		transition_state.emit("IdlePlayerState")
+	if(Global.player.velocity.length() == 0 && !isExiting): #this needs to be changed. flips between idle and walking because velocity doesnt change before this
+		next_state = "IdlePlayerState"
+		exit()
 	
 	move_direction = (Global.player.yaw_pivot.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
@@ -29,14 +31,18 @@ func process_physics(delta : float) -> void:
 	
 	Global.player.move_and_slide()
 
+
 func process_input(event : InputEvent) -> void:
 	super(event)
-	if(event.is_action_pressed("crouch")):
+	if(event.is_action_pressed("crouch") && !isExiting):
 		if(Global.player.velocity.length() <= 5.0): #later do else: slide
-			transition_state.emit("CrouchingPlayerState")
+			next_state = "CrouchingPlayerState"
+			exit()
 	
-	if(event.is_action_pressed("sprint")):
-		transition_state.emit("SprintingPlayerState")
+	if(event.is_action_pressed("sprint") && !isExiting):
+		next_state = "SprintingPlayerState"
+		exit()
 		
-	if(event.is_action_pressed("jump")):
-		transition_state.emit("JumpingPlayerState")
+	if(event.is_action_pressed("jump") && !isExiting):
+		next_state = "JumpingPlayerState"
+		exit()

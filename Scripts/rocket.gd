@@ -4,6 +4,7 @@ extends RigidBody3D
 
 var Explosion = preload("res://Scenes/Weapons/explosion.tscn")
 
+
 func _ready() -> void:
 	_Particles.emitting = true
 

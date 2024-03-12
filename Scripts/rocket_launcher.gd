@@ -8,10 +8,12 @@ extends Node3D
 
 var Rocket = preload("res://Scenes/Weapons/rocket.tscn")
 
+
 func _PrimaryFire():
 	var Target = GetCameraCollision()
 	var RocketDirection = (Target - RocketPoint.global_transform.origin).normalized()
 	SpawnRocket(RocketDirection)
+
 
 func GetCameraCollision():
 	var RayOrigin = _Camera.project_ray_origin(_Viewport/2)
@@ -28,6 +30,7 @@ func GetCameraCollision():
 		return ColPoint
 	else:
 		return RayEnd
+
 
 func SpawnRocket(Dir : Vector3):
 	var W = get_tree().get_root()

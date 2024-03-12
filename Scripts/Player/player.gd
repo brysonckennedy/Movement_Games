@@ -26,13 +26,17 @@ func _ready() -> void:
 	Global.player = self
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	player_state_machine.animation_player = animation_player
 	player_state_machine.init()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	player_state_machine.process_input(event)
 
+
 func _process(delta : float) -> void:
 	player_state_machine.process_frame(delta)
+
 
 func _physics_process(delta : float) -> void:
 	player_state_machine.process_physics(delta)

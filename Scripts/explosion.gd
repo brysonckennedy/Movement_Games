@@ -5,9 +5,11 @@ extends Area3D
 var Position: Vector3
 var Impact = 10
 
+
 func _ready() -> void:
 	_Particles.emitting = true
 	
+
 
 func _on_timer_timeout():
 	queue_free()

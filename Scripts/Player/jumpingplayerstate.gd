@@ -4,15 +4,18 @@ extends PlayerState
 var input_direction : Vector2
 var move_direction : Vector3
 
+
 func enter():
 	super()
 	Global.player.velocity.y = Global.player.JUMP_FORCE
 
+
 func process_physics(delta : float) -> void:
 	super(delta)
 	
-	if(Global.player.velocity.y < 0):
-		transition_state.emit("FallingPlayerState")
+	if(Global.player.velocity.y < 0 && !isExiting):
+		next_state = "FallingPlayerState"
+		exit()
 	
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	move_direction = (Global.player.yaw_pivot.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()

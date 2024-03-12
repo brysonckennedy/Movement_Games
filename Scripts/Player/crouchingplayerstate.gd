@@ -7,17 +7,20 @@ var move_direction: Vector3
 
 func enter() -> void:
 	super()
-	Global.player.animation_player.play("Crouch", -1, Global.player.CROUCH_ANIMATION_SPEED)
+	animation_player.play(enter_animation, -1, Global.player.CROUCH_ANIMATION_SPEED)
+
 
 func exit() -> void:
 	super()
-	Global.player.animation_player.play("Crouch", -1, -Global.player.CROUCH_ANIMATION_SPEED, true)
+	animation_player.play(exit_animation, -1, -Global.player.CROUCH_ANIMATION_SPEED, true)
+
 
 func process_physics(delta: float) -> void:
 	super(delta)
 	
-	if(Input.get_action_raw_strength("crouch") == 0): #&& Global.player.crouch_shapecast.is_colliding() == false):
-		transition_state.emit("IdlePlayerState")
+	if(Input.get_action_raw_strength("crouch") == 0 && !isExiting): #&& Global.player.crouch_shapecast.is_colliding() == false):
+		next_state = "IdlePlayerState"
+		exit()
 
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	

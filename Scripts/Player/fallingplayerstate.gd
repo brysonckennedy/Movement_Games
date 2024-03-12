@@ -5,19 +5,23 @@ extends PlayerState
 var input_direction : Vector2
 var move_direction : Vector3
 
+
 func process_physics(delta: float) -> void:
 	super(delta)
 	
 	input_direction = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	
-	if(Global.player.is_on_floor()):
+	if(Global.player.is_on_floor() && !isExiting):
 		if(Global.player.velocity.length() == 0):
-			transition_state.emit("IdlePlayerState")
+			next_state = "IdlePlayerState"
+			exit()
 		else:
 			if(Input.is_action_pressed("sprint")):
-				transition_state.emit("SprintingPlayerState")
+				next_state = "SprintingPlayerState"
+				exit()
 			else:
-				transition_state.emit("WalkingPlayerState")
+				next_state = "WalkingPlayerState"
+				exit()
 	
 	move_direction = (Global.player.yaw_pivot.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	

@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 mesh = SubResource("CylinderMesh_00v8j")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="RocketLauncherMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0392368, -0.134268, -0.258531)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.134, -0.259)
 mesh = SubResource("CylinderMesh_ei36s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
